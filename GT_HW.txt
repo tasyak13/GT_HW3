@@ -1,0 +1,33 @@
+/*1*/
+select max(salary) from employees;
+/*2*/
+select count(employee_id) from employees;
+/*3*/
+select avg(salary) as avg_salary from employees;
+/*4*/
+select employee_id, first_name, last_name, salary from employees
+where salary = (select max(salary) from employees);
+/*5*/
+select employee_id, first_name, last_name, salary from employees
+where salary < (select avg(salary) from employees);
+/*6*/
+select count(*) from departments;
+/*7*/        
+select count(*) as count_of_departments 
+from departments t1
+left join employees t2
+on t2.department_id = t1.department_id
+where t2.employee_id is null;
+/*8*/
+select avg(salary) from employees
+where department_id = 90;
+/*9*/
+select max(salary) from employees
+where department_id in (70, 80);
+/*10*/
+select count(*) from employees 
+where department_id = 100 and salary > 5000;
+/*11*/
+select employee_id, first_name, last_name, salary from employees
+where department_id = 60 and
+salary > (select avg(salary) from employees);
